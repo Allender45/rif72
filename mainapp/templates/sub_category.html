@@ -1,0 +1,51 @@
+{% load static %}
+
+{% include 'head.html' %}
+
+<body>
+{% include 'header.html' %}
+
+<!-- Categories Section Begin -->
+<section class="categories categories-grid spad">
+  <div class="categories__post">
+    <div class="container">
+      <div class="categories__grid__post">
+        <div class="row">
+          <div class="col-lg-8 col-md-8">
+            <div class="breadcrumb__text">
+              <h2>Категория: <span>{{ selected_sub_category }}</span></h2>
+              <div class="breadcrumb__option">
+                <a href="{% url 'home' %}">Главная</a>
+                <a href="{{ selected_sub_category.get_absolute_url }}"><span>{{ selected_sub_category.category }}</span></a>
+                <span>{{ selected_sub_category }}</span>
+              </div>
+            </div>
+            <div class="row">
+              {% for item in products %}
+              <div class="col-lg-6 col-md-6 col-sm-6">
+
+                  <div class="categories__post__item">
+                    <div class="categories__post__item__pic small__item set-bg"
+                         data-setbg="{{ item.image.url }}">
+                    </div>
+                    <div class="categories__post__item__text">
+                      <h3><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h3>
+                      <p>{{ item.description }}</p>
+                    </div>
+                  </div>
+
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% include 'sidebar.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Categories Section End -->
+
+<!-- Footer Section Begin -->
+{% include 'footer.html' %}
+<!-- Footer Section End -->

@@ -1,0 +1,64 @@
+{% load static %}
+
+<!-- Page Preloder -->
+{#<div id="preloder">#}
+{#  <div class="loader"></div>#}
+{#</div>#}
+
+<!-- Header Section Begin -->
+<header class="header">
+  <div class="header__top" style="position: fixed; z-index: 100; width: 100%;">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
+          <div class="header__humberger">
+            <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+          </div>
+        </div>
+
+        <div class="col-lg-8 col-md-10 order-md-2 order-3">
+          <nav class="header__menu">
+            <ul>
+              <li class="active"><a href="{% url 'home' %}">Главная</a></li>
+              <li><a href="#">Категории</a>
+                <div class="header__megamenu__wrapper">
+                  <div class="header__megamenu">
+                    {% for item in category %}
+                      <div class="header__megamenu__item">
+                        <a href="{{ item.get_absolute_url }}">
+                          <div class="header__megamenu__item--pic set-bg"
+                               data-setbg="{{ item.image.url }}">
+                            <div class="label">{{ item.name }}</div>
+                          </div>
+                        </a>
+                        <div class="header__megamenu__item--text">
+                          <h5><a href="{{ item.get_absolute_url }}">{{ item.description }}</a>
+                          </h5>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </li>
+              <li><a href="{% url 'blog' %}">Блог</a></li>
+              <li><a href="./about.html">О нас</a></li>
+              <li><a href="./contact.html">Контакты</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
+          <nav class="header__menu">
+            <ul>
+              <li class=""><a href="./home.html">Корзина <span
+                      style="color: red">({{ cart_product_count }})</span></a>
+            </ul>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Header Section End -->

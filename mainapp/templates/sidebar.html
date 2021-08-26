@@ -1,0 +1,36 @@
+<div class="col-lg-4 col-md-4">
+          <h2 style="text-align: center; margin: 30px 30px">Акции</h2>
+          <div class="sidebar__item">
+            {% for item in promo %}
+              <div class="sidebar__about__item">
+                <div class="sidebar__item__title">
+                  <h6>{{ item.name }}</h6>
+                </div>
+                <img src="{{ item.small_image.url }}" alt="">
+                <p>{{ item.short_text }}</p>
+                <a href="{{ item.get_absolute_url }}" class="primary-btn">Подробнее</a>
+              </div>
+            {% endfor %}
+            <div class="sidebar__follow__item">
+              <div class="sidebar__item__title">
+                <h6>Соц цети</h6>
+              </div>
+              <div class="sidebar__item__follow__links">
+                <a href="#"><i class="fa fa-vk"></i></a>
+                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-envelope-o"></i></a>
+              </div>
+            </div>
+            <div class="sidebar__item__categories">
+              <div class="sidebar__item__title">
+                <h6>Меню</h6>
+              </div>
+              <ul>
+                {% for item in category %}
+                  <li><a href="#">{{ item.name }} <span>{{ item.product_set.count }}</span></a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>

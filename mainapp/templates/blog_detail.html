@@ -1,0 +1,125 @@
+{% load static %}
+
+{% include 'head.html' %}
+
+<body>
+{% include 'header.html' %}
+
+<!-- Single Post Section Begin -->
+<section class="single-post spad">
+  <div class="single-post__hero set-bg"
+       data-setbg="{{ blog.image_large.url }}"></div>
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-8">
+        <div class="single-post__title">
+          <div class="single-post__title__meta">
+            <h2>{{ blog.date|date:'d' }}</h2>
+            <span>{{ blog.date|date:'M' }}</span>
+          </div>
+          <div class="single-post__title__text">
+            <ul class="label">
+              <li>Vegan</li>
+              <li>Desserts</li>
+            </ul>
+            <h2>{{ blog.title }}</h2>
+            <ul class="widget">
+              <li>by Admin</li>
+              <li>3 min read</li>
+              <li>20 Comment</li>
+            </ul>
+          </div>
+        </div>
+        <div class="single-post__social__item">
+          <ul>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+          </ul>
+        </div>
+        <div class="single-post__top__text">
+          <p>{{ blog.text|safe }}</p>
+        </div>
+        <div class="single-post__tags">
+          <a href="#">Food</a>
+          <a href="#">Vegan</a>
+          <a href="#">Tomato</a>
+          <a href="#">Weightloss</a>
+        </div>
+        <div class="single-post__comment">
+          <div class="widget__title">
+            <h4>03 Comment</h4>
+          </div>
+          <div class="single-post__comment__item">
+            <div class="single-post__comment__item__pic">
+              <img src="img/categories/single-post/comment/comment-1.jpg" alt="">
+            </div>
+            <div class="single-post__comment__item__text">
+              <h5>Brandon Kelley</h5>
+              <span>15 Aug 2017</span>
+              <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
+                magnam.</p>
+              <ul>
+                <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                <li><a href="#"><i class="fa fa-share-square-o"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="single-post__comment__item single-post__comment__item--reply">
+            <div class="single-post__comment__item__pic">
+              <img src="img/categories/single-post/comment/comment-2.jpg" alt="">
+            </div>
+            <div class="single-post__comment__item__text">
+              <h5>Brandon Kelley</h5>
+              <span>15 Aug 2017</span>
+              <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
+                magnam.</p>
+              <ul>
+                <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                <li><a href="#"><i class="fa fa-share-square-o"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="single-post__comment__item">
+            <div class="single-post__comment__item__pic">
+              <img src="img/categories/single-post/comment/comment-3.jpg" alt="">
+            </div>
+            <div class="single-post__comment__item__text">
+              <h5>Brandon Kelley</h5>
+              <span>15 Aug 2017</span>
+              <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
+                magnam.</p>
+              <ul>
+                <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+                <li><a href="#"><i class="fa fa-share-square-o"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="single-post__leave__comment">
+          <div class="widget__title">
+            <h4>Leave a comment</h4>
+          </div>
+          <form action="#">
+            <div class="input-list">
+              <input type="text" placeholder="Name">
+              <input type="text" placeholder="Email">
+              <input type="text" placeholder="Website">
+            </div>
+            <textarea placeholder="Message"></textarea>
+            <button type="submit" class="site-btn">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Single Post Section End -->
+
+<!-- Footer Section Begin -->
+{% include 'footer.html' %}
+<!-- Footer Section End -->

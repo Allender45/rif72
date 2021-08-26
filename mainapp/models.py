@@ -1,11 +1,14 @@
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name='Имя категории')
     slug = models.SlugField(max_length=255, unique=True)
+    image = models.ImageField('Изображение', upload_to='categories', null=True, blank=True)
+    description = models.CharField('Описание', max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -20,7 +23,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название продукта')
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name='Категория продукта')
+    category = models.ForeignKey('SubCategory', on_delete=models.PROTECT, verbose_name='Категория продукта')
     description = models.TextField(max_length=2000, verbose_name='Описание продукта')
     image = models.ImageField(verbose_name='Изображение')
     price = models.DecimalField(max_digits=10, decimal_places=0, verbose_name='Цена продукта')
@@ -122,3 +125,60 @@ class CarouselImages(models.Model):
     class Meta:
         verbose_name = 'Изображение для слайдера'
         verbose_name_plural = 'Изображения для слайдера'
+
+
+class Blog(models.Model):
+    title = models.CharField('Заголовок', max_length=250)
+    text = models.TextField('Текст', max_length=2000)
+    short_text = models.TextField('Описание', max_length=500, blank=True, null=True)
+    image_large = models.ImageField('Большое изображение', upload_to='img/blog/large')
+    image_small = models.ImageField('Маленькое изображение', upload_to='img/blog/small')
+    slug = models.SlugField(unique=True)
+    date = models.DateField('Дата', default=timezone.now)
+    published = models.BooleanField('Опубликовано', default=False)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Блог'
+        verbose_name_plural = 'Блог'
+
+    def get_absolute_url(self):
+        return reverse('blog_detail', args=[str(self.slug)])
+
+
+class Promo(models.Model):
+    name = models.CharField('Название', max_length=250)
+    text = models.TextField('Текст', max_length=2000)
+    short_text = models.TextField('Короткий текст', max_length=1000)
+    image = models.ImageField('Изображение', upload_to='promo')
+    small_image = models.ImageField('Превью', upload_to='promo')
+    slug = models.SlugField(unique=True)
+    date = models.DateField('Дата', default=timezone.now)
+    published = models.BooleanField('Опубликовано', default=False)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Акция'
+        verbose_name_plural = 'Акции'
+
+
+class SubCategory(models.Model):
+    name = models.CharField('Название', max_length=250)
+    slug = models.SlugField(max_length=255, unique=True)
+    image = models.ImageField('Изображение', upload_to='categories', null=True, blank=True)
+    description = models.TextField('Описание', max_length=1000, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, verbose_name='Категория')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Подкатегория'
+        verbose_name_plural = 'Подкатегории'
+
+    def get_absolute_url(self):
+        return reverse('sub_category_detail', args=[str(self.slug)])
